@@ -1,0 +1,10 @@
+.ant-table-wrapper {
+	width: 700px;
+	height: 550px;
+	border: 1px solid rgb(184, 182, 182) !important;
+	border-radius: 5px !important;
+}
+
+th.ant-table-cell.actions-thead {
+	text-align: center !important;
+}
