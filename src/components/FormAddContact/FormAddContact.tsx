@@ -81,6 +81,7 @@ const ModalAddContact: React.FC<ModalFormI> = ({ open, onClose }) => {
 					<Button
 						type="primary"
 						htmlType="submit"
+						loading={addContactMutation.isLoading}
 						style={{
 							display: "block",
 							marginLeft: "auto",

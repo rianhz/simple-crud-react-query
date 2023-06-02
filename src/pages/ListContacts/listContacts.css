@@ -8,3 +8,7 @@
 th.ant-table-cell.actions-thead {
 	text-align: center !important;
 }
+
+.ant-spin-container {
+	height: 550px;
+}

@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 
 const ListContacts: React.FC = () => {
 	const { Text } = Typography;
-
 	const [open, setOpen] = useState(false);
 
 	const [myPage, setMyPage] = useState(1);
@@ -125,8 +124,9 @@ const ListContacts: React.FC = () => {
 						setMyPage(page);
 					},
 					style: {
-						position: "fixed",
-						bottom: 60,
+						position: "absolute",
+						bottom: 0,
+						right: 0,
 					},
 				}}
 			/>
