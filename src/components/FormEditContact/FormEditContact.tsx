@@ -1,9 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Typography } from "antd";
 import { Toaster, toast } from "react-hot-toast";
 import { editContact, fetchContact, fetchContacts } from "../../hooks/query";
 import { useNavigate, useParams } from "react-router-dom";
 import { Contact } from "../../contact";
+import "./modalEditForm.css";
 
 const FormEditContact: React.FC = () => {
 	const [form] = Form.useForm();
@@ -12,11 +13,11 @@ const FormEditContact: React.FC = () => {
 	const client = useQueryClient();
 
 	const { contactID } = useParams();
+	const { Text } = Typography;
 
 	const { data: contactData } = useQuery({
 		queryKey: ["getEditedContact", contactID],
 		queryFn: () => fetchContact(contactID as any),
-		retryOnMount: true,
 	});
 
 	const editMutation = useMutation(editContact, {
@@ -39,9 +40,6 @@ const FormEditContact: React.FC = () => {
 		editMutation.mutate(body);
 	};
 
-	// console.log(contactData);
-	// console.log(contactID);
-	// console.log(form.getFieldsValue());
 	const { data: contact } = useQuery({
 		queryKey: ["contacts"],
 		queryFn: fetchContacts,
@@ -52,12 +50,25 @@ const FormEditContact: React.FC = () => {
 	return (
 		<>
 			<Toaster />
+			<Text
+				strong
+				style={{
+					fontSize: 30,
+				}}
+			>
+				Edit Contact
+			</Text>
 			<Form
 				form={form}
 				onFinish={editContactExecute}
 				initialValues={{
 					name: contact?.name,
 					phone: contact?.phone,
+				}}
+				style={{
+					borderRadius: 5,
+					width: 400,
+					marginTop: "20px",
 				}}
 			>
 				<Form.Item name="name" label="Name">
